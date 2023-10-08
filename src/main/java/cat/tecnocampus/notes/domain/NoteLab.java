@@ -2,6 +2,8 @@ package cat.tecnocampus.notes.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import io.hypersistence.tsid.TSID;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -12,6 +14,8 @@ import java.util.List;
 public class NoteLab {
 
     @Id
+    private Long id = TSID.fast().toLong();
+
     private String title;
     private String content;
 
@@ -74,4 +78,7 @@ public class NoteLab {
         return "NoteLab: " + this.title + ", Content: " + this.content;
     }
 
+    public Long getId() {
+        return id;
+    }
 }

@@ -37,6 +37,14 @@ application service.
 5. Ok, let's have some fun with Jackson!!! Recall that Jackson is a library that serializes and unserializes objects from/to json format
    We propose you to uncomment the getOwner() method in the Note class and see what happens. You'll get a stack overflow error. Can you figure out why?
    Fix it using the appropriate Jackson annotations (without commenting back the getter method).
+
+
+   *It's because when showing User, it also shows the owned Notes, which have a parameter of owner (User)... recursion*
+
 6. Add a numerical Id to the notes. Make sure the IDs are generated in the note service using the TSID library.
 
    
+
+## Questions:
+1. Should we use ResponseEntity for everything? Or we can only use it for the exceptions?
+2. On validation, should we break up each requirement into a separate annotation? Or can we use a single annotation for all of them?

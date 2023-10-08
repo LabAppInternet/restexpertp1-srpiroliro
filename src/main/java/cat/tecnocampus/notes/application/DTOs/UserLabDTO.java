@@ -1,5 +1,6 @@
 package cat.tecnocampus.notes.application.DTOs;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -9,16 +10,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 public class UserLabDTO {
 
     private String username;
 
+    @Pattern(regexp = "^[A-Z][a-zA-Z ]{3,}$", message = "Name must be at least 3 characters long and can only contain letters and must start with a capital letter.")
     private String name;
 
     private String secondName;
 
+    @Email(message = "Email should be valid")
     private String email;
 
+    @JsonManagedReference
     private final Map<String, NoteLabDTO> ownedNotes;
 
     public UserLabDTO() {

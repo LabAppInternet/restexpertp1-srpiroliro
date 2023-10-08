@@ -1,11 +1,17 @@
 package cat.tecnocampus.notes.application.DTOs;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import jakarta.validation.constraints.Pattern;
 
 import java.time.LocalDateTime;
 
 public class NoteLabDTO {
 
+    private Long id;
+
+    @Pattern(regexp = "^[a-zA-Z ]{3,255}$", message = "Title can only contain letters and must be between 3 and 255 characters.")
     private String title;
     private String content;
 
@@ -13,18 +19,18 @@ public class NoteLabDTO {
 
     private LocalDateTime dateEdit;
 
+    @JsonBackReference
     private UserLabDTO owner;
 
     public NoteLabDTO() {
     }
 
-    /*
+
     public UserLabDTO getOwner() {
         return owner;
     }
 
-     */
-
+     
     public void setOwner(UserLabDTO owner) {
         this.owner = owner;
     }
@@ -69,4 +75,10 @@ public class NoteLabDTO {
         this.dateEdit = dateEdit;
     }
 
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
